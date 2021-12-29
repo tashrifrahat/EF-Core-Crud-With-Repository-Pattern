@@ -15,19 +15,19 @@ namespace EFCoreCrudWithRepository.Service
             _dataContext = dataContext;
                
         }
-        public async Task<ActionResult<List<Registration>>> AddUsers(Registration registration)
+        public async Task<List<Registration>> AddUsers(Registration registration)
         {
             _dataContext.Users.Add(registration);
             await _dataContext.SaveChangesAsync();
             return await _dataContext.Users.ToListAsync();
         }
 
-        public async Task<ActionResult<List<Registration>>> GetAllUsers()
+        public async Task<List<Registration>> GetAllUsers()
         {
             return await _dataContext.Users.ToListAsync();
         }
 
-        public async Task<ActionResult<Registration>> GetUserbyId(int id)
+        public async Task<Registration> GetUserbyId(int id)
         {
             var x = await _dataContext.Users.FindAsync(id);
             if (x == null)
@@ -35,7 +35,7 @@ namespace EFCoreCrudWithRepository.Service
             //await _dataContext.SaveChangesAsync();
             return x;
         }
-        public async Task<ActionResult<Registration>> UpdateUser(int id, Registration registration)
+        public async Task<Registration> UpdateUser(int id, Registration registration)
         {
          
             var user = await _dataContext.Users.FindAsync(id);

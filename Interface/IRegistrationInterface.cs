@@ -5,10 +5,10 @@ namespace EFCoreCrudWithRepository.Interface
 {
     public interface IRegistrationInterface  
     {
-        public Task<ActionResult<List<Registration>>> AddUsers(Registration registration);
-        public Task<ActionResult<List<Registration>>> GetAllUsers();
-        public Task<ActionResult<Registration>> GetUserbyId(int id);
-        public Task<ActionResult<Registration>> UpdateUser(int id, Registration registration);
+        public Task<List<Registration>> AddUsers(Registration registration);
+        public Task<List<Registration>> GetAllUsers();
+        public Task<Registration> GetUserbyId(int id);
+        public Task<Registration> UpdateUser(int id, Registration registration);
         public Task<bool> DeleteUser(int id);
     }
 }

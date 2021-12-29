@@ -20,31 +20,71 @@ namespace EFCoreCrudWithRepository.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Registration>>> Post(Registration registration)
         {
-            return await _registrationInterface.AddUsers(registration);
+            try
+            {
+                return await _registrationInterface.AddUsers(registration);
+
+            }
+            catch (Exception ex) 
+            {
+
+                return StatusCode(StatusCodes.Status400BadRequest,ex.Message);
+            }
+            
 
         }
 
         [HttpGet("GetAll")]
         public async Task<ActionResult<List<Registration>>> GetAll()
         {
-            return await _registrationInterface.GetAllUsers();
+            try
+            {
+                return await _registrationInterface.GetAllUsers();
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+
+            }
+            
         }
 
         [HttpGet("GetbyId")]
         public async Task<ActionResult<Registration>> GetUser_Id(int id)
         {
-            return await _registrationInterface.GetUserbyId(id);
+            try
+            {
+                return await _registrationInterface.GetUserbyId(id);
+
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status404NotFound,ex.Message);
+            }
+            
 
         }
 
         [HttpPut("UpdateUserbyId")]
         public async Task<ActionResult<Registration>>UpdateUserbyId(int id, Registration registration)
         {
-            return await _registrationInterface.UpdateUser(id, registration);
+            try
+            {
+                return await _registrationInterface.UpdateUser(id, registration);
+
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status404NotFound, ex.Message);
+            }
+           
         }
 
 
-        [HttpDelete]
+        [HttpDelete("DeleteUser")]
         public async Task<ActionResult> DeleteUser_Id(int id)
         {
             try
